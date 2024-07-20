@@ -39,8 +39,7 @@ pub mod plethoraNFT {
     // *************************************************************************
     use starknet::{ContractAddress, get_caller_address};
     use core::num::traits::zero::Zero;
-    use plethora::interfaces::IplethoraNFT;
-    use plethora::base::{hubrestricted::HubRestricted::hub_only, errors::Errors::ALREADY_MINTED};
+    use plethora::interfaces::IPlethoraNFT;
     use openzeppelin::{
         account, access::ownable::OwnableComponent,
         token::erc721::{
@@ -117,14 +116,14 @@ pub mod plethoraNFT {
     }
 
     #[abi(embed_v0)]
-    impl plethoraImpl of IplethoraNFT::IplethoraNFT<ContractState> {
+    impl plethoraImpl of IPlethoraNFT::IPlethoraNFT <ContractState> {
         /// @notice mints the plethora NFT
         /// @param address address of user trying to mint the plethora NFT
         fn mint_plethoraNFT(ref self: ContractState, address: ContractAddress) {
             let balance = self.erc721.balance_of(address);
             assert(balance.is_zero(), ALREADY_MINTED);
 
-            let mut token_id = self.last_minted_id.read() + 1;
+            let token_id = self.last_minted_id.read() + 1;
             self.erc721._mint(address, token_id);
 
             self.user_token_id.write(address, token_id);
