@@ -40,6 +40,7 @@ pub mod plethoraNFT {
     use starknet::{ContractAddress, get_caller_address};
     use core::num::traits::zero::Zero;
     use plethora::interfaces::IPlethoraNFT;
+    use plethora::constants::errors::Errors::ALREADY_MINTED;
     use openzeppelin::{
         account, access::ownable::OwnableComponent,
         token::erc721::{

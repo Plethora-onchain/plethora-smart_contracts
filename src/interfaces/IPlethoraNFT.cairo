@@ -1,6 +1,6 @@
 use starknet::ContractAddress;
 // *************************************************************************
-//                              INTERFACE of KARST NFT
+//                              INTERFACE of PLETHORA NFT
 // *************************************************************************
 #[starknet::interface]
 pub trait IPlethoraNFT<TState> {
