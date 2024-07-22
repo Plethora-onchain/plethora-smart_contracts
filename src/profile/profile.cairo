@@ -1,8 +1,7 @@
-
 use starknet::ContractAddress;
 
 #[starknet::component]
-mod ProfileComponent {
+pub mod ProfileComponent {
     // *************************************************************************
     //                            IMPORT
     // *************************************************************************
@@ -14,7 +13,8 @@ mod ProfileComponent {
     };
     use plethora::interfaces::IERC721::{IERC721Dispatcher, IERC721DispatcherTrait};
     use plethora::interfaces::IProfile::IProfile;
-    use plethora::{constants::types::Profile, constants::errors::Errors::NOT_PROFILE_OWNER};
+    use plethora::constants::types::Profile;
+    use plethora::constants::errors::Errors::NOT_PROFILE_OWNER;
 
     // *************************************************************************
     //                              STORAGE
@@ -30,12 +30,12 @@ mod ProfileComponent {
     // *************************************************************************
     #[event]
     #[derive(Drop, starknet::Event)]
-    enum Event {
+    pub enum Event {
         CreatedProfile: CreatedProfile
     }
 
     #[derive(Drop, starknet::Event)]
-    struct CreatedProfile {
+    pub struct CreatedProfile {
         #[key]
         owner: ContractAddress,
         #[key]
@@ -70,12 +70,16 @@ mod ProfileComponent {
             salt: felt252
         ) -> ContractAddress {
             let recipient = get_caller_address();
-            let owns_plethoranft = IERC721Dispatcher { contract_address: plethoranft_contract_address }
+            let owns_plethoranft = IERC721Dispatcher {
+                contract_address: plethoranft_contract_address
+            }
                 .balance_of(recipient);
+            
             if owns_plethoranft == 0 {
                 IPlethoraNFTDispatcher { contract_address: plethoranft_contract_address }
                     .mint_plethoranft(recipient);
-            }
+            }    
+
             let token_id = IPlethoraNFTDispatcher { contract_address: plethoranft_contract_address }
                 .get_user_token_id(recipient);
 
@@ -156,14 +160,9 @@ mod ProfileComponent {
         ) -> u256 {
             let mut profile: Profile = self.profile.read(profile_address);
             let new_content_count = profile.content_count + 1;
-            let updated_profile = Profile {
-                profile_address: profile.profile_address,
-                profile_owner: profile.profile_owner,
-                content_count: new_content_count,
-                metadata_URI: profile.metadata_URI,
-            };
+            profile.content_count = new_content_count;
 
-            self.profile.write(profile_address, updated_profile);
+            self.profile.write(profile_address, profile);
             new_content_count
         }
     }

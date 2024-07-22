@@ -1,5 +1,5 @@
 use starknet::ContractAddress;
-use plethora::constants::Profile;
+use plethora::constants::types::Profile;
 // *************************************************************************
 //                              INTERFACE of Plethora PROFILE
 // *************************************************************************

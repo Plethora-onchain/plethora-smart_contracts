@@ -117,10 +117,10 @@ pub mod plethoraNFT {
     }
 
     #[abi(embed_v0)]
-    impl plethoraImpl of IPlethoraNFT::IPlethoraNFT <ContractState> {
+    impl plethoraImpl of IPlethoraNFT::IPlethoraNFT<ContractState> {
         /// @notice mints the plethora NFT
         /// @param address address of user trying to mint the plethora NFT
-        fn mint_plethoraNFT(ref self: ContractState, address: ContractAddress) {
+        fn mint_plethoranft(ref self: ContractState, address: ContractAddress) {
             let balance = self.erc721.balance_of(address);
             assert(balance.is_zero(), ALREADY_MINTED);
 
