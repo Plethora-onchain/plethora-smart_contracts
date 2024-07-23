@@ -5,3 +5,4 @@ pub mod content;
 pub mod profile;
 pub mod presets;
 pub mod utils;
+pub mod hub;

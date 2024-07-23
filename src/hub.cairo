@@ -1,1 +1,1 @@
-pub mod hubrestricted;
+pub mod hub;
