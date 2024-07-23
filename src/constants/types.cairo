@@ -73,11 +73,11 @@ pub struct PostParams {
 // */
 #[derive(Drop, Serde, starknet::Store, Clone)]
 pub struct CommentParams {
-   pub profile_address: ContractAddress,
-   pub content_URI: ByteArray,
-   pub pointed_profile_address: ContractAddress,
-   pub pointed_content_id: u256,
-   pub reference_content_type: ContentType
+    pub profile_address: ContractAddress,
+    pub content_URI: ByteArray,
+    pub pointed_profile_address: ContractAddress,
+    pub pointed_content_id: u256,
+    pub reference_content_type: ContentType
 }
 
 

@@ -9,7 +9,7 @@ pub trait IPlethoraContents<TState> {
     // *************************************************************************
     //                              EXTERNALS
     // *************************************************************************
-    // fn initialize(ref self: TState, hub_address: ContractAddress);
+    fn initialize(ref self: TState, hub_address: ContractAddress);
     fn post(ref self: TState, post_params: PostParams) -> u256;
     fn comment(ref self: TState, comment_params: CommentParams) -> u256;
     // *************************************************************************

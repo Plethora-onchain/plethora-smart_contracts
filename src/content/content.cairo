@@ -15,12 +15,13 @@ pub mod ContentComponent {
 
     use plethora::profile::profile::ProfileComponent;
 
-    // **********s***************************************************************
+    // *************************************************************************
     //                              STORAGE
     // *************************************************************************
     #[storage]
     struct Storage {
         content: LegacyMap<(ContractAddress, u256), Content>,
+        plethora_hub: ContractAddress
     }
 
     // *************************************************************************
@@ -62,6 +63,11 @@ pub mod ContentComponent {
         // *************************************************************************
         //                              PUBLISHING FUNCTIONS
         // *************************************************************************
+        /// @notice initialize publication component
+        /// @param hub_address address of hub contract
+        fn initialize(ref self: ComponentState<TContractState>, hub_address: ContractAddress) {
+            self.plethora_hub.write(hub_address);
+        }
 
         /// @notice performs post action
         /// @param contentURI uri of the content to be posted

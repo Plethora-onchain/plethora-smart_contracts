@@ -20,6 +20,9 @@ pub trait IProfile<TState> {
     fn set_profile_metadata_uri(
         ref self: TState, profile_address: ContractAddress, metadata_uri: ByteArray
     );
+
+    fn increment_content_count(ref self: TState, profile_address: ContractAddress) -> u256;
+
     // *************************************************************************
     //                              GETTERS
     // *************************************************************************

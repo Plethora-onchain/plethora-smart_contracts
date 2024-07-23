@@ -27,8 +27,9 @@ mod PlethoraContent {
         #[flat]
         ProfileEvent: ProfileComponent::Event
     }
-// #[constructor]
-// fn constructor(ref self: ContractState, hub_address: ContractAddress) {
-//     self.content.initialize(hub_address);
-// }
+
+    #[constructor]
+    fn constructor(ref self: ContractState, hub_address: ContractAddress) {
+        self.content.initialize(hub_address);
+    }
 }

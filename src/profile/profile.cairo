@@ -15,6 +15,8 @@ pub mod ProfileComponent {
     use plethora::interfaces::IProfile::IProfile;
     use plethora::constants::types::Profile;
     use plethora::constants::errors::Errors::NOT_PROFILE_OWNER;
+    use plethora::utils::hubrestricted::HubRestricted::hub_only;
+
 
     // *************************************************************************
     //                              STORAGE
@@ -74,11 +76,11 @@ pub mod ProfileComponent {
                 contract_address: plethoranft_contract_address
             }
                 .balance_of(recipient);
-            
+
             if owns_plethoranft == 0 {
                 IPlethoraNFTDispatcher { contract_address: plethoranft_contract_address }
                     .mint_plethoranft(recipient);
-            }    
+            }
 
             let token_id = IPlethoraNFTDispatcher { contract_address: plethoranft_contract_address }
                 .get_user_token_id(recipient);
@@ -149,10 +151,7 @@ pub mod ProfileComponent {
             let profile: Profile = self.profile.read(profile_address);
             profile.content_count
         }
-    }
 
-    #[generate_trait]
-    impl Private<TContractState, +HasComponent<TContractState>> of PrivateTrait<TContractState> {
         /// @notice increments user's content count
         /// @params profile_address the targeted profile address
         fn increment_content_count(

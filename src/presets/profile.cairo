@@ -20,8 +20,8 @@ mod PlethoraProfile {
         #[flat]
         ProfileEvent: ProfileComponent::Event
     }
-// #[constructor]
-// fn constructor(ref self: ContractState, hub_address: ContractAddress) {
-//     self.profile.initializer(hub_address);
-// }
+    #[constructor]
+    fn constructor(ref self: ContractState, hub_address: ContractAddress) {
+        self.profile.initializer(hub_address);
+    }
 }
