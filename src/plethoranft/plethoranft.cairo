@@ -105,15 +105,13 @@ pub mod plethoraNFT {
     //                              CONSTRUCTOR
     // *************************************************************************
     #[constructor]
-    fn constructor(
-        ref self: ContractState,
-        admin: ContractAddress,
-        name: ByteArray,
-        symbol: ByteArray,
-        base_uri: ByteArray,
-    ) {
+    fn constructor(ref self: ContractState, admin: ContractAddress,) {
         self.admin.write(admin);
-        self.erc721.initializer(name, symbol, base_uri);
+        self
+            .erc721
+            .initializer(
+                "PlethoraNFT", "PLT", "https://aqua-abundant-catshark-806.mypinata.cloud/ipfs/"
+            );
     }
 
     #[abi(embed_v0)]

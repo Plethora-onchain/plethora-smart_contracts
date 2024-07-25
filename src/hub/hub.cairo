@@ -34,12 +34,14 @@ pub mod Hub {
     }
 
     #[constructor]
-    fn constructor(
-        ref self: ContractState, hub_address: ContractAddress, plethoranft_address: ContractAddress
-    ) {
+    fn constructor(ref self: ContractState, plethoranft_address: ContractAddress) {
+        self.plethoranft_address.write(plethoranft_address);
+    }
+
+    #[external(v0)]
+    fn set_hub_address(ref self: ContractState, hub_address: ContractAddress) {
         self.profile.initializer(hub_address);
         self.content.initialize(hub_address);
-        self.plethoranft_address.write(plethoranft_address);
     }
 
     #[external(v0)]
