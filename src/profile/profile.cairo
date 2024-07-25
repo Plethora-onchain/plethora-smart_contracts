@@ -15,7 +15,6 @@ pub mod ProfileComponent {
     use plethora::interfaces::IProfile::IProfile;
     use plethora::constants::types::Profile;
     use plethora::constants::errors::Errors::NOT_PROFILE_OWNER;
-    use plethora::utils::hubrestricted::HubRestricted::hub_only;
 
 
     // *************************************************************************
@@ -59,11 +58,8 @@ pub mod ProfileComponent {
         ) {
             self.plethora_nft_address.write(plethora_nft_address);
         }
+
         /// @notice creates plethora profile
-        /// @param plethoranft_contract_address address of plethoranft
-        /// @param registry_hash class_hash of registry contract
-        /// @param implementation_hash the class hash of the reference account
-        /// @param salt random salt for deployment
         fn create_profile(
             ref self: ComponentState<TContractState>,
             plethoranft_contract_address: ContractAddress,
@@ -108,8 +104,6 @@ pub mod ProfileComponent {
         }
 
         /// @notice set profile metadata_uri (`banner_image, description, profile_image` to be uploaded to arweave or ipfs)
-        /// @params profile_address the targeted profile address
-        /// @params metadata_uri the profile CID
         fn set_profile_metadata_uri(
             ref self: ComponentState<TContractState>,
             profile_address: ContractAddress,
@@ -127,7 +121,6 @@ pub mod ProfileComponent {
         // *************************************************************************
 
         // @notice returns the Profile struct of a profile address
-        // @params profile_address the targeted profile address
         fn get_profile(
             self: @ComponentState<TContractState>, profile_address: ContractAddress
         ) -> Profile {
@@ -135,7 +128,6 @@ pub mod ProfileComponent {
         }
 
         /// @notice returns user profile metadata
-        /// @params profile_address the targeted profile address 
         fn get_profile_metadata(
             self: @ComponentState<TContractState>, profile_address: ContractAddress
         ) -> ByteArray {
@@ -144,7 +136,6 @@ pub mod ProfileComponent {
         }
 
         // @notice returns the content count of a profile address
-        // @params profile_address the targeted profile address
         fn get_user_content_count(
             self: @ComponentState<TContractState>, profile_address: ContractAddress
         ) -> u256 {
@@ -153,7 +144,6 @@ pub mod ProfileComponent {
         }
 
         /// @notice increments user's content count
-        /// @params profile_address the targeted profile address
         fn increment_content_count(
             ref self: ComponentState<TContractState>, profile_address: ContractAddress
         ) -> u256 {

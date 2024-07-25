@@ -1,5 +1,5 @@
 use starknet::ContractAddress;
-use plethora::constants::types::{Profile, PostParams, CommentParams, ContentType, Content};
+use plethora::constants::types::{Profile, PostParams, Post};
 
 // *************************************************************************
 //                              INTERFACE of HUB CONTRACT
@@ -31,26 +31,7 @@ pub trait IHub<TState> {
     // *************************************************************************
     //                            CONTENT
     // *************************************************************************
-    fn post(ref self: TState, post_params: PostParams) -> u256;
+    fn post(ref self: TState, post_params: PostParams);
 
-    fn comment(ref self: TState, comment_params: CommentParams) -> u256;
-
-    fn get_content(
-        self: @TState, profile_address: ContractAddress, content_id_assigned: u256
-    ) -> Content;
-
-    fn get_content_type(
-        self: @TState, profile_address: ContractAddress, content_id_assigned: u256
-    ) -> ContentType;
-
-    fn get_content_uri(
-        self: @TState, profile_address: ContractAddress, content_id: u256
-    ) -> ByteArray;
-
-    // *************************************************************************
-    //                            HANDLES
-    // *************************************************************************
-    fn get_handle_id(self: @TState, profile_address: ContractAddress) -> u256;
-
-    fn get_handle(self: @TState, handle_id: u256) -> ByteArray;
+    fn get_post(self: @TState, post_id: felt252) -> Post;
 }
