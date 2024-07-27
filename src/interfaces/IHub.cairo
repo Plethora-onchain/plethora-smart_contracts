@@ -1,4 +1,5 @@
 use starknet::ContractAddress;
+use core::array::Array;
 use plethora::constants::types::{Profile, PostParams, Post};
 
 // *************************************************************************
@@ -34,4 +35,5 @@ pub trait IHub<TState> {
     fn post(ref self: TState, post_params: PostParams);
 
     fn get_post(self: @TState, post_id: felt252) -> Post;
+    fn get_all_posts(self: @TState) -> Array<Post>;
 }
