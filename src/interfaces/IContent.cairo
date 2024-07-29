@@ -15,6 +15,6 @@ pub trait IPlethoraContents<TState> {
     // *************************************************************************
     //                              GETTERS
     // *************************************************************************
-    fn get_post(self: @TState, post_id: felt252) -> Post;
+    fn get_post(self: @TState, post_id: u32) -> Post;
     fn get_all_posts(self: @TState) -> Array<Post>;
 }

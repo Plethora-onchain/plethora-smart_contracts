@@ -20,8 +20,9 @@ pub mod ContentComponent {
     // *************************************************************************
     #[storage]
     struct Storage {
-        posts: LegacyMap<felt252, Post>,
-        post_ids: Array<felt252>,
+        posts: LegacyMap<u32, Post>,
+        post_ids: Array<u32>,
+        post_count: u32,
         plethora_hub: ContractAddress
     }
 
@@ -58,8 +59,12 @@ pub mod ContentComponent {
         /// @param post_params parameters for the post
      
         fn post(ref self: ComponentState<TContractState>, post_params: PostParams) {
+
+            let _count = self.post_count.read();
+            let _currentCount = _count+1; 
+
             let new_post = Post {
-                id: post_id.into(),
+                id: _currentCount,
                 title: post_params.title,
                 content: post_params.content,
                 createdAt: get_block_timestamp(),
@@ -69,8 +74,9 @@ pub mod ContentComponent {
                 creator_address: post_params.creator_address,
             };
 
+            self.post_count.write(_currentCount);
             self.posts.write(post_params.id, new_post);
-            self.post_ids.append(post_params.id);  // Add this line to keep track of post IDs
+
             self
                 .emit(
                     PostCreated {
@@ -83,7 +89,7 @@ pub mod ContentComponent {
 
         /// @notice retrieves a post
         /// @param post_id the ID of the post to be retrieved
-        fn get_post(self: @ComponentState<TContractState>, post_id: felt252) -> Post {
+        fn get_post(self: @ComponentState<TContractState>, post_id: u32) -> Post {
             self.posts.read(post_id)
         }
 
@@ -93,10 +99,9 @@ pub mod ContentComponent {
             let post_count = self.post_count.read();
 
             let mut i: u32 = 1;
-            loop {
-                if i > post_count {
-                    break;
-                }
+    
+            while i < post_count
+            + 1 {
                 let post = self.posts.read(i);
                 all_posts.append(post);
                 i += 1;
