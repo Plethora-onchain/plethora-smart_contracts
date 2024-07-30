@@ -33,11 +33,9 @@ pub struct Post {
 // * @notice A struct containing the parameters supplied to the post method
 #[derive(Drop, Serde, starknet::Store, Clone)]
 pub struct PostParams {
-    pub id: u32,
     pub title: Option<felt252>,
     pub content: Option<felt252>,
     pub post_url: Option<felt252>,
     pub img_url: Option<felt252>,
     pub platform: Option<felt252>,
-    pub creator_address: ContractAddress,
 }

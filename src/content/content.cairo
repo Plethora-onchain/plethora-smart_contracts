@@ -71,11 +71,11 @@ pub mod ContentComponent {
                 post_url: post_params.post_url,
                 img_url: post_params.img_url,
                 platform: post_params.platform,
-                creator_address: post_params.creator_address,
+                creator_address: get_caller_address(),
             };
 
             self.post_count.write(_currentCount);
-            self.posts.write(post_params.id, new_post);
+            self.posts.write(new_post.id, new_post);
 
             self
                 .emit(
