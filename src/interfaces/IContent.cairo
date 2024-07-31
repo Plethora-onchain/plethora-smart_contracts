@@ -11,7 +11,13 @@ pub trait IPlethoraContents<TState> {
     //                              EXTERNALS
     // *************************************************************************
     fn initialize(ref self: TState, hub_address: ContractAddress);
-    fn post(ref self: TState, post_params: PostParams);
+    fn post(ref self: TState, 
+        title:  felt252,
+        content: felt252,
+        post_url:  felt252,
+        img_url:  felt252,
+        platform:  felt252
+    );
     // *************************************************************************
     //                              GETTERS
     // *************************************************************************

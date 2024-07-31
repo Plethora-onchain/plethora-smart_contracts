@@ -37,7 +37,7 @@ pub mod ContentComponent {
 
     #[derive(Drop, starknet::Event)]
     pub struct PostCreated {
-        post: PostParams,
+        post_id: u32,
         transaction_executor: ContractAddress,
         block_timestamp: u64,
     }
@@ -58,19 +58,25 @@ pub mod ContentComponent {
         /// @notice performs post action
         /// @param post_params parameters for the post
      
-        fn post(ref self: ComponentState<TContractState>, post_params: PostParams) {
+        fn post(ref self: ComponentState<TContractState>, 
+            title:  felt252,
+            content:  felt252,
+            post_url:  felt252,
+            img_url:  felt252,
+            platform:  felt252
+         ) {
 
             let _count = self.post_count.read();
             let _currentCount = _count+1; 
 
             let new_post = Post {
                 id: _currentCount,
-                title: post_params.title,
-                content: post_params.content,
+                title: title,
+                content: content,
                 createdAt: get_block_timestamp(),
-                post_url: post_params.post_url,
-                img_url: post_params.img_url,
-                platform: post_params.platform,
+                post_url: post_url,
+                img_url: img_url,
+                platform: platform,
                 creator_address: get_caller_address(),
             };
 
@@ -80,7 +86,7 @@ pub mod ContentComponent {
             self
                 .emit(
                     PostCreated {
-                        post: post_params,
+                        post_id: new_post.id,
                         transaction_executor: get_caller_address(),
                         block_timestamp: get_block_timestamp(),
                     }
