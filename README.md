@@ -21,7 +21,7 @@ Plethora is a content creation platform that empowers creators to monetize their
 
 ### For Audiences:
 
-- **Support Creators**: Easily tip your favorite creators in stablecoins.
+- **Support Creators**: Easily tip your favourite creators in stablecoins.
 - **Diverse Content**: Access a wide range of content types in one platform.
 - **Simplified Discovery**: Find creators across various mediums in a single place.
 
@@ -30,13 +30,14 @@ Plethora is a content creation platform that empowers creators to monetize their
 - **Create or Import**: Creators can either produce new content directly on Plethora or import existing content from supported platforms.
 - **Engage**: Audiences interact with the content, enjoying a diverse range of creative works.
 - **Tip**: Viewers can show their appreciation by tipping creators with stablecoins.
-- **Grow**: Creators build their audience and income stream, while continuing to create and share their passion.
+- **Grow**: Creators build their audience and income stream while continuing to create and share their passion.
 
 ## Future Plans
 As we move on from the hackathon we plan to extend the platform to include:
 - Integration with emerging content platforms and blockchain-based social media
 - Extension of the custom content to include video, audio and livestreams
-- Collaborative features for creators to work across different mediums and platformsins.
+- Collaborative features for creators to work across different mediums and platforms.
+- Make Each NFT a SoulBoundToken.
 
 ## FrontEnd
 You can find the Plethora Frontend - [HERE](https://github.com/Plethora-onchain/plethora-frontend)
@@ -45,3 +46,5 @@ You can find the Plethora Frontend - [HERE](https://github.com/Plethora-onchain/
 
 - Horuslabs.
 - OnlyDust.
+- Starknet Foundation.
+- Starknet Africa.
