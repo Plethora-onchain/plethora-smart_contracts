@@ -18,24 +18,24 @@ pub struct Profile {
 }
 
 // * @notice A struct containing post data.
-#[derive(Drop, Serde, starknet::Store)]
+#[derive(Drop, Serde,Copy, Clone, starknet::Store)]
 pub struct Post {
     pub id: u32,
-    pub title: Option<felt252>,
-    pub content: Option<felt252>,
+    pub title: felt252,
+    pub content: felt252,
     pub createdAt: u64,
-    pub post_url: Option<felt252>,
-    pub img_url: Option<felt252>,
-    pub platform: Option<felt252>,
+    pub post_url: felt252,
+    pub img_url: felt252,
+    pub platform: felt252,
     pub creator_address: ContractAddress,
 }
 
 // * @notice A struct containing the parameters supplied to the post method
 #[derive(Drop, Serde, starknet::Store, Clone)]
 pub struct PostParams {
-    pub title: Option<felt252>,
-    pub content: Option<felt252>,
-    pub post_url: Option<felt252>,
-    pub img_url: Option<felt252>,
-    pub platform: Option<felt252>,
+    pub title: felt252,
+    pub content: felt252,
+    pub post_url: felt252,
+    pub img_url: felt252,
+    pub platform: felt252,
 }

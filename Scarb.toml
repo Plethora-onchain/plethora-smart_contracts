@@ -22,3 +22,6 @@ sierra = true
 
 [scripts]
 test = "snforge test"
+
+[profile.new-profile.cairo]
+sierra-replace-ids = false
